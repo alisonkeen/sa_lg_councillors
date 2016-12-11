@@ -49,7 +49,7 @@ def process_contacts(contacts)
   end
 end
 
-skip = 0
+skip = 100
 loop do
   contacts = Parse::Query.new("contact").tap do |q|
     q.limit = 10
