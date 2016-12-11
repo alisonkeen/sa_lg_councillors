@@ -15,7 +15,7 @@ def process_contacts(contacts)
     sleep 1
     begin # want to catch 503 errors
       query = Parse::Query.new("council")
-    rescue
+    rescue Parse::ParseProtocolError
       sleep 3
       return
     end
