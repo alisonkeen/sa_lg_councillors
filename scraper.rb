@@ -54,7 +54,7 @@ def process_contacts(contacts)
   end
 end
 
-skip = 250
+skip = 281
 loop do
   begin # Need to catch 503 errors
     contacts = Parse::Query.new("contact").tap do |q|
