@@ -11,6 +11,8 @@ Parse.init :application_id => "LvLKTxvA2LGOTJAXTZhblO4E1f04miKymXsHRGaO",
 
 def process_contacts(contacts)
   contacts.each do |contact|
+    # Wait one second to reduce 503 errors
+    sleep 1
     query = Parse::Query.new("council")
     query.eq("councilId", contact["ownerId"])
     council = query.get.first
