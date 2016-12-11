@@ -13,7 +13,12 @@ def process_contacts(contacts)
   contacts.each do |contact|
     # Wait one second to reduce 503 errors
     sleep 1
-    query = Parse::Query.new("council")
+    begin # want to catch 503 errors
+      query = Parse::Query.new("council")
+    rescue
+      sleep 3
+      return
+    end
     query.eq("councilId", contact["ownerId"])
     council = query.get.first
 
@@ -49,7 +54,7 @@ def process_contacts(contacts)
   end
 end
 
-skip = 100
+skip = 250
 loop do
   begin # Need to catch 503 errors
     contacts = Parse::Query.new("contact").tap do |q|
