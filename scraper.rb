@@ -50,10 +50,10 @@ end
 skip = 0
 loop do
   contacts = Parse::Query.new("contact").tap do |q|
-    q.limit = 100
+    q.limit = 10
     q.skip = skip
   end.get
   break if contacts.empty?
-  skip += 100
+  skip += 10
   process_contacts(contacts)
 end
