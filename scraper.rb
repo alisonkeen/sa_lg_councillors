@@ -51,10 +51,17 @@ end
 
 skip = 100
 loop do
-  contacts = Parse::Query.new("contact").tap do |q|
-    q.limit = 10
-    q.skip = skip
-  end.get
+  begin # Need to catch 503 errors
+    contacts = Parse::Query.new("contact").tap do |q|
+      q.limit = 10
+      q.skip = skip
+    end.get
+
+  rescue Parse::ParseProtocolError
+    skip -= 10
+    sleep 3 # wait a sec, try again?
+  end
+
   break if contacts.empty?
   skip += 10
   process_contacts(contacts)
