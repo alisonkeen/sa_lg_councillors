@@ -1,0 +1,5 @@
+
+This scraper reads the LGA (South Australian Local Government Association) Parse API originally contracted and provided by Deloitte.
+
+The Parse API is a special edition issued in the parset for GovHack and may be deprecated; data may or may not have been updated. 
+
